@@ -55,21 +55,19 @@ if __name__ == '__main__':
         for revision in revisions:
             if str(date.today()) == revision['timestamp'].split('T')[0]:
                 pravki = pravki + 1
-                news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title=Playrix&action=history')
+                news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history')
                 
                 
         dataset[k][0] = f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history'
         dataset[k][1] = revision['timestamp'].split('T')[0]
     
     if pravki > 0:
-        print('Есть свежие правки: \n')
-        send_message('Есть свежие правки: \n')
+        send_message(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+' / Есть свежие правки:\n')
         for h in range(len(news)):
             print(news[h])
-        print('')
+            send_message(news[h]+'\n')
     else:
-        print('Свежих правок сегодня не было/\n')
-        send_message('Свежих правок сегодня не было/\n')
+        send_message(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+' / Свежих правок не было:\n')
         
     send_message(
         'Ссылка'+' / '+'Дата последней правки'+'\n'+
