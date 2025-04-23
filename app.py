@@ -39,7 +39,7 @@ if __name__ == '__main__':
     news = []
 
     for k in range(len(langs)):
-        time.sleep(0.5)
+        time.sleep(1)
         url = f'https://{langs[k]}.wikipedia.org/w/api.php'
         params = {
             'action': 'query',
