@@ -51,6 +51,8 @@ if __name__ == '__main__':
         print(response)
         print(type(response))
         data = response.json()
+        print(data)
+        print(type(data))
 
         # Доступ к данным об изменениях
         revisions = data['query']['pages'][f'{ids[k]}']['revisions']
