@@ -1,8 +1,6 @@
 name: Daily Bot
 
-on:
-    schedule:
-        - cron: "*/10 * * * *"
+on: workflow_dispatch
 
 env:
     TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
