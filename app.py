@@ -58,7 +58,7 @@ if __name__ == '__main__':
                 news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title=Playrix&action=history')
                 
                 
-        dataset[k][0] = f'https://{langs[k]}.wikipedia.org/w/index.php?title=Playrix&action=history'
+        dataset[k][0] = f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history'
         dataset[k][1] = revision['timestamp'].split('T')[0]
     
     if pravki > 0:
