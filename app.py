@@ -48,6 +48,8 @@ if __name__ == '__main__':
         }
         
         response = requests.get(url, params=params)
+        print(response)
+        print(type(response))
         data = response.json()
 
         # Доступ к данным об изменениях
