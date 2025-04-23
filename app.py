@@ -5,6 +5,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from datetime import date
 import time
+import pytz
 
 
 load_dotenv()
@@ -49,16 +50,13 @@ if __name__ == '__main__':
         }
         
         response = requests.get(url, params=params)
-        print(response)
-        print(type(response))
         data = response.json()
-        print(data)
-        print(type(data))
 
         # Доступ к данным об изменениях
         revisions = data['query']['pages'][f'{ids[k]}']['revisions']
+        print(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d'))
         for revision in revisions:
-            if str(date.today()) == revision['timestamp'].split('T')[0]:
+            if str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d')) == revision['timestamp'].split('T')[0]:
                 pravki = pravki + 1
                 news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history')
                 
@@ -67,12 +65,12 @@ if __name__ == '__main__':
         dataset[k][1] = revision['timestamp'].split('T')[0]
     
     if pravki > 0:
-        send_message(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+' / Есть свежие правки:\n')
+        send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Есть свежие правки:\n')
         for h in range(len(news)):
             print(news[h])
             send_message(news[h]+'\n')
     else:
-        send_message(str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+' / Свежих правок не было:\n')
+        send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Свежих правок не было:\n')
         
     send_message(
         'Ссылка'+' / '+'Дата последней правки'+'\n'+
