@@ -1,2 +1,2 @@
-# super_bot
-# super_bot
+# playrix-viki-bot
+# playrix-viki-bot
