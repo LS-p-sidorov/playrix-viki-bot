@@ -3,6 +3,10 @@ name: Daily Bot
 on:
     push:
 
+env:
+    TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+    TELEGRAM_CHANEL_ID: ${{ secrets.TELEGRAM_CHANEL_ID }}
+
 jobs:
     Daily-Run:
         runs-on: ubuntu-latest
