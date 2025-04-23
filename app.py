@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from dotenv import load_dotenv
 from datetime import date
-
+import time
 
 
 load_dotenv()
@@ -39,6 +39,7 @@ if __name__ == '__main__':
     news = []
 
     for k in range(len(langs)):
+        time.sleep(1)
         url = f'https://{langs[k]}.wikipedia.org/w/api.php'
         params = {
             'action': 'query',
