@@ -1,7 +1,7 @@
 import requests
 import os
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from datetime import date
 import time
@@ -39,6 +39,11 @@ if __name__ == '__main__':
     pravki = 0
     news = []
 
+    yestarday = datetime.now(pytz.timezone('Europe/Moscow'))-timedelta(days=1)
+    yestarday = yestarday.strftime('%Y-%m-%d')
+
+    today = datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d')
+
     for k in range(len(langs)):
         time.sleep(1)
         url = f'https://{langs[k]}.wikipedia.org/w/api.php'
@@ -54,9 +59,9 @@ if __name__ == '__main__':
 
         # Доступ к данным об изменениях
         revisions = data['query']['pages'][f'{ids[k]}']['revisions']
-        print(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d'))
+
         for revision in revisions:
-            if str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d')) == revision['timestamp'].split('T')[0]:
+            if str(today) == revision['timestamp'].split('T')[0] or str(yestarday) == revision['timestamp'].split('T')[0]:
                 pravki = pravki + 1
                 news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history')
                 
