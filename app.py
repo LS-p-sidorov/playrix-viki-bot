@@ -27,14 +27,13 @@ def send_message(data):
 
 
 
-
 if __name__ == '__main__':
 
-    langs = [ 'ru', 'ja', 'ko', 'uk', 'id', 'de', 'en', 'it', 'vi', 'he', 'th' ]
-    titles = ['Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'פלייריקס','เพลย์ริกซ์']
-    ids = ['1753369', '3827363', '2828727', '2377222', '3984678', '10941028', '52668348', '9036946', '19357370', '2112701', '1349692']
+    langs = ['ru', 'en', 'id', 'he', 'uk', 'ru', 'en', 'id', 'he', 'ru', 'ja', 'ko', 'uk', 'de', 'en', 'it', 'vi']
+    titles = ['Бухман, Дмитрий Анатольевич', 'Dmitry Bukhman', 'Dmitry Bukhman', 'דמיטרי בוכמן', 'Бухман Ігор Анатолійович', 'Бухман, Игорь Анатольевич', 'Igor Bukhman', 'Igor Bukhman', 'איגור בוכמן', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix', 'Playrix']
+    ids = ['8049948', '62661703', '4261400', '2326524', '3411941', '8049954', '70596728', '4261416', '2326829', '1753369', '3827363', '2828727', '2377222', '10941028', '52668348', '9036946', '19357370']
 
-    dataset = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
+    dataset = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
 
     pravki = 0
     news = []
@@ -63,10 +62,10 @@ if __name__ == '__main__':
         for revision in revisions:
             if str(today) == revision['timestamp'].split('T')[0] or str(yestarday) == revision['timestamp'].split('T')[0]:
                 pravki = pravki + 1
-                news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history')
+                news.append(f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history'.replace(' ','_'))
                 
                 
-        dataset[k][0] = f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history'
+        dataset[k][0] = f'https://{langs[k]}.wikipedia.org/w/index.php?title={titles[k]}&action=history'.replace(' ','_')
         dataset[k][1] = revision['timestamp'].split('T')[0]
     
     if pravki > 0:
@@ -89,5 +88,10 @@ if __name__ == '__main__':
         dataset[7][0]+'   '+dataset[7][1]+'\n'+
         dataset[8][0]+'   '+dataset[8][1]+'\n'+
         dataset[9][0]+'   '+dataset[9][1]+'\n'+
-        dataset[10][0]+'   '+dataset[10][1]+'\n'
+        dataset[10][0]+'   '+dataset[10][1]+'\n'+
+        dataset[11][0]+'   '+dataset[11][1]+'\n'+
+        dataset[12][0]+'   '+dataset[12][1]+'\n'+
+        dataset[13][0]+'   '+dataset[13][1]+'\n'+
+        dataset[14][0]+'   '+dataset[14][1]+'\n'+
+        dataset[15][0]+'   '+dataset[15][1]+'\n'
     )
