@@ -2,7 +2,7 @@ name: Daily Bot
 
 on:
    schedule:
-       - cron: "0 8,14,20 * * *"
+       - cron: "0 20 * * *"
 
 env:
     TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
