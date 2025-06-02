@@ -74,9 +74,10 @@ if __name__ == '__main__':
             print(news[h])
             send_message(news[h]+'\n')
     else:
-        send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Свежих правок не было:\n')
+        print('Свежих правок не было')
+        #send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Свежих правок не было:\n')
         
-    send_message(
+    print(
         'Ссылка'+' / '+'Дата последней правки'+'\n'+
         dataset[0][0]+'   '+dataset[0][1]+'\n'+
         dataset[1][0]+'   '+dataset[1][1]+'\n'+
