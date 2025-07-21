@@ -44,7 +44,7 @@ if __name__ == '__main__':
     today = datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d')
 
     for k in range(len(langs)):
-        time.sleep(1)
+        time.sleep(10)
         url = f'https://{langs[k]}.wikipedia.org/w/api.php'
         params = {
             'action': 'query',
