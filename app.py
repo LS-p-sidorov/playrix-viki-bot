@@ -46,7 +46,7 @@ if __name__ == '__main__':
         today = datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d')
 
         for k in range(len(langs)):
-            time.sleep(1)
+            time.sleep(10)
             url = f"https://{langs[k]}.wikipedia.org/w/api.php"
             headers = {
                 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
@@ -105,10 +105,5 @@ if __name__ == '__main__':
             dataset[16][0]+'   '+dataset[16][1]+'\n'+
             dataset[17][0]+'   '+dataset[17][1]+'\n'
         )
-        send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Есть свежие правки:\n')
-        send_message('https://id.wikipedia.org/w/index.php?title=Dmitry_Bukhman&action=history'+'\n')   
-        send_message('https://en.wikipedia.org/w/index.php?title=Dmitry_Bukhman&action=history '+'\n')
-        send_message('https://en.wikipedia.org/w/index.php?title=Igor_Bukhman&action=history'+'\n') 
-        send_message('https://id.wikipedia.org/w/index.php?title=Igor_Bukhman&action=history'+'\n') 
     except:
         send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Ошибка работы скрипта\n')
