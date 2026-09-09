@@ -49,7 +49,7 @@ if __name__ == '__main__':
             time.sleep(10)
             url = f"https://{langs[k]}.wikipedia.org/w/api.php"
             headers = {
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+                'user-agent': 'PlayrixWikiBot/1.0 (https://github.com/LS-p-sidorov/playrix-viki-bot)'
             }
             params = {
                 'action': 'query',
@@ -59,8 +59,12 @@ if __name__ == '__main__':
             }
 
             
-            response = requests.get(url, params=params, headers=headers)
-            print(response)
+            response = requests.get(url, params=params, headers=headers, timeout=30)
+            print(f"lang={langs[k]} status={response.status_code}")
+            if response.status_code != 200:
+                safe_body = response.text[:200].replace('\n', ' ')
+                print(f"WIKIPEDIA HTTP ERROR: lang={langs[k]} url={response.url} status={response.status_code} body={safe_body}")
+            response.raise_for_status()
             data = response.json()
 
             # Доступ к данным об изменениях
@@ -105,5 +109,10 @@ if __name__ == '__main__':
             dataset[16][0]+'   '+dataset[16][1]+'\n'+
             dataset[17][0]+'   '+dataset[17][1]+'\n'
         )
-    except:
-        send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Ошибка работы скрипта\n')
+    except Exception as e:
+        print(f"ERROR: {type(e).__name__}: {e}")
+        try:
+            send_message(str(datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S'))+' / Ошибка работы скрипта\n')
+        except Exception as te:
+            print(f"ERROR: telegram notify failed: {type(te).__name__}: {te}")
+        raise
